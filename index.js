@@ -38,6 +38,12 @@ app.get('/validarfecha/:ano/:mes/:dia', (req,res)  => {
 // || ||                            || ||
 // \/ \/                            \/ \/
 
+app.get('/matematica/sumar?n1={numero}&n2={numero}', (req,res) => {
+    let result = sumar(n1,n2)
+    res.send(result)
+    res.status(200).send;
+
+})
 
 //
 // Inicio el Server y lo pongo a escuchar.
@@ -51,4 +57,4 @@ app.listen(port, () => {
 // getIntegerOrDefault
 // ParseInt para validar numero sea si o si numero y que se haya mandado
 // con simbolo de pregunta se valida si es invalido o no
-// node index.js para iniciar
+// "node index.js" para iniciar en consola node
