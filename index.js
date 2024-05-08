@@ -15,24 +15,35 @@ app.use(express.json()); // Middleware para parsear y comprender JSON
 // Aca pongo todos los EndPoints
 //
 app.get('/', (req, res) => { // EndPoint "/"
-res.send('Ya estoy respondiendo!');
-res.status(200).send;
+    res.send('Ya estoy respondiendo!');
+    res.status(200).send;
 }) 
 app.get('/saludar/:nombre', (req, res) => { // EndPoint "/saludar"
-res.send('Hola ' + req.params.nombre);
-res.status(200).send;
-})
-app.get('/validarfecha/:ano/:mes/:dia', (req,res)  => {
-    if (Date.parse(req.params.ano, req.params.mes, req.params.dia)){
-
-    } 
+    res.send('Hola ' + req.params.nombre);
     res.status(200).send;
 })
+app.get('/validarfecha/:ano/:mes/:dia', (req,res)  => {
+    let ms = Date.parse(req.params.ano, req.params.mes + 1, req.params.dia + 1)
+    console.log(ms)
+    if (ms != null){
+        res.status(200).send;
+    } else {
+        res.status(400).send;
+    }
+
+})
+// || ||                            || ||
+// || ||                            || ||
+// Endpoints utilizando modulo Matematica.js
+// || ||                            || ||
+// \/ \/                            \/ \/
+
+
 //
 // Inicio el Server y lo pongo a escuchar.
 //
 app.listen(port, () => {
-console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
 
 
