@@ -39,8 +39,8 @@ app.get('/validarfecha/:ano/:mes/:dia', (req,res)  => {
 //        \/ \/                          \/ \/
                                            
 app.get('/matematica/sumar', (req,res) => { // ?n1={numero}&n2={numero}
-   const result = sumar(req.query.n1,req.query.n2)
-    res.send(result)
+   const result = sumar(req.query.n1,req.query.n2);
+    res.send(result);
     res.status(200).send;
 
 })
@@ -78,7 +78,7 @@ alumnosArray.push(new Alumno("Elba Calao" , "32623391", 18));
 app.get('/alumnos', (req,res) => { //
     const result = alumnosArray
     res.send(result)
-    res.status(200).send;    
+    res.status(200).send;
 })
 //
 // Inicio el Server y lo pongo a escuchar.
