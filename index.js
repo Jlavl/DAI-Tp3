@@ -39,30 +39,30 @@ app.get('/validarfecha/:ano/:mes/:dia', (req,res)  => {
 //        \/ \/                          \/ \/
                                            
 app.get('/matematica/sumar', (req,res) => { // ?n1={numero}&n2={numero}
-   const result = sumar(req.query.n1,req.query.n2);
-    res.send(result);
-    res.status(200).send;
+   let result = sumar(+(req.query.n1),+(req.query.n2));
+   result = result.toString()
+    res.status(200).send(result);
 
 })
 app.get('/matematica/restar', (req,res) => { // ?n1={numero}&n2={numero}
-    const result = restar(req.query.n1,req.query.n2)
-    res.send(result)
-    res.status(200).send;
+    let result = restar(+(req.query.n1),+(req.query.n2));
+    result = result.toString()
+    res.status(200).send(result);
  
  })
  app.get('/matematica/multiplicar', (req,res) => { // ?n1={numero}&n2={numero}
-    const result = multiplicar(req.query.n1,req.query.n2)
-    res.send(result)
-    res.status(200).send;
+    let result = multiplicar(+(req.query.n1),+(req.query.n2));
+    result = result.toString()
+    res.status(200).send(result);
  
  })
  app.get('/matematica/dividir', (req,res) => { // ?n1={numero}&n2={numero}
     if (req.query.n2 == 0) {
         res.status(400).send;
     } else {
-        const result = dividir(req.query.n1,req.query.n2)
-    res.send(result)
-    res.status(200).send;
+        let result = dividir(+(req.query.n1),+(req.query.n2))
+    result = result.toString()
+    res.status(200).send(result);
     }
  })
 //        || ||                      || ||
@@ -75,10 +75,13 @@ alumnosArray.push(new Alumno("Esteban Dido" , "22888444", 20));
 alumnosArray.push(new Alumno("Matias Queroso", "28946255", 51));
 alumnosArray.push(new Alumno("Elba Calao" , "32623391", 18));
 
-app.get('/alumnos', (req,res) => { //
+app.get('/alumnos', (req,res) => { // 
     const result = alumnosArray
-    res.send(result)
-    res.status(200).send;
+    res.status(200).send(result);
+})
+app.get('/alumnos/:dni', (req,res) => { //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    const result = alumnosArray.find(req.params.dni)
+    res.status(200).send(result);
 })
 //
 // Inicio el Server y lo pongo a escuchar.
