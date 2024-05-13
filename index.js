@@ -12,13 +12,13 @@ const port = 3000; // El puerto 3000 (http://localhost:3000)
 app.use(cors()); // Middleware de CORS
 app.use(express.json()); // Middleware para parsear y comprender JSON
 //
-// Aca pongo todos los EndPoints
+// EndPoints
 //
 app.get('/', (req, res) => { // EndPoint "/"
     res.send('Ya estoy respondiendo!');
     res.status(200).send;
 }) 
-app.get('/saludar/:nombre', (req, res) => { // EndPoint "/saludar"
+app.get('/saludar/:nombre', (req, res) => {
     res.send('Hola ' + req.params.nombre);
     res.status(200).send;
 })
@@ -32,29 +32,65 @@ app.get('/validarfecha/:ano/:mes/:dia', (req,res)  => {
     }
 
 })
-// || ||                            || ||
-// || ||                            || ||
-// Endpoints utilizando modulo Matematica.js
-// || ||                            || ||
-// \/ \/                            \/ \/
-
-app.get('/matematica/sumar?n1={numero}&n2={numero}', (req,res) => {
-    let result = sumar(n1,n2)
+//        || ||                          || ||
+//        || ||                          || ||
+//      Endpoints utilizando modulo Matematica.js
+//        || ||                          || ||
+//        \/ \/                          \/ \/
+                                           
+app.get('/matematica/sumar', (req,res) => { // ?n1={numero}&n2={numero}
+   const result = sumar(req.query.n1,req.query.n2)
     res.send(result)
     res.status(200).send;
 
 })
+app.get('/matematica/restar', (req,res) => { // ?n1={numero}&n2={numero}
+    const result = restar(req.query.n1,req.query.n2)
+    res.send(result)
+    res.status(200).send;
+ 
+ })
+ app.get('/matematica/multiplicar', (req,res) => { // ?n1={numero}&n2={numero}
+    const result = multiplicar(req.query.n1,req.query.n2)
+    res.send(result)
+    res.status(200).send;
+ 
+ })
+ app.get('/matematica/dividir', (req,res) => { // ?n1={numero}&n2={numero}
+    if (req.query.n2 == 0) {
+        res.status(400).send;
+    } else {
+        const result = dividir(req.query.n1,req.query.n2)
+    res.send(result)
+    res.status(200).send;
+    }
+ })
+//        || ||                      || ||
+//        || ||                      || ||
+//      Endpoints utilizando modulo Alumno.js
+//        || ||                      || ||
+//        \/ \/                      \/ \/
+const alumnosArray = [];
+alumnosArray.push(new Alumno("Esteban Dido" , "22888444", 20));
+alumnosArray.push(new Alumno("Matias Queroso", "28946255", 51));
+alumnosArray.push(new Alumno("Elba Calao" , "32623391", 18));
 
+app.get('/alumnos', (req,res) => { //
+    const result = alumnosArray
+    res.send(result)
+    res.status(200).send;    
+})
 //
 // Inicio el Server y lo pongo a escuchar.
 //
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`TP03 app listening on port ${port}`)
 })
 
 
 
-// getIntegerOrDefault
+/* getIntegerOrDefault
 // ParseInt para validar numero sea si o si numero y que se haya mandado
 // con simbolo de pregunta se valida si es invalido o no
 // "node index.js" para iniciar en consola node
+*/
