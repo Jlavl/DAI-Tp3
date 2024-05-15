@@ -43,27 +43,27 @@ app.get('/matematica/sumar', (req,res) => { // ?n1={numero}&n2={numero}
    result = result.toString()
     res.status(200).send(result);
 
-})
+}) // 20 + 30 = 50
 app.get('/matematica/restar', (req,res) => { // ?n1={numero}&n2={numero}
     let result = restar(+(req.query.n1),+(req.query.n2));
     result = result.toString()
     res.status(200).send(result);
  
- })
+ }) // 40 - 30 = 10
  app.get('/matematica/multiplicar', (req,res) => { // ?n1={numero}&n2={numero}
     let result = multiplicar(+(req.query.n1),+(req.query.n2));
     result = result.toString()
     res.status(200).send(result);
  
- })
+ }) // 4 * 3 = 12
  app.get('/matematica/dividir', (req,res) => { // ?n1={numero}&n2={numero}
-    if (req.query.n2 == 0) {
-        res.status(400).send;
+    if (+(req.query.n2) == 0 || +(req.query.n1) == 0) {
+        res.status(400).send('El divisor no puede ser 0');
     } else {
         let result = dividir(+(req.query.n1),+(req.query.n2))
     result = result.toString()
     res.status(200).send(result);
-    }
+    } // 40%5 = 8
  })
 //        || ||                      || ||
 //        || ||                      || ||
@@ -75,13 +75,17 @@ alumnosArray.push(new Alumno("Esteban Dido" , "22888444", 20));
 alumnosArray.push(new Alumno("Matias Queroso", "28946255", 51));
 alumnosArray.push(new Alumno("Elba Calao" , "32623391", 18));
 
-app.get('/alumnos', (req,res) => { // 
+app.get('/alumnos', (req,res) => { // Funciona
     const result = alumnosArray
     res.status(200).send(result);
 })
-app.get('/alumnos/:dni', (req,res) => { //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-    const result = alumnosArray.find(req.params.dni)
+app.get('/alumnos/:dni', (req,res) => { // Funciona con los tres
+    const result = alumnosArray.find(alumnosArray => alumnosArray.DNI == req.params.dni)
     res.status(200).send(result);
+})
+app.post('/alumnos', (req,res) => {
+    alumnosArray.push(new Alumno(req.body))
+    res.status(201).send;
 })
 //
 // Inicio el Server y lo pongo a escuchar.
