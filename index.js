@@ -2,7 +2,7 @@ import Alumno from "./src/models/alumno.js"
 import {sumar, restar, multiplicar, dividir} from "./src/modules/matematica.js"
 /*import {OMDBSearchByPage, OMDBSearchComplete, OMDBGetByImdbID} from
 "./modules/omdb-wrapper.js"*/
-import express from "express"; // hacer npm i express
+import express from "express"; // hacer npm i express 
 import cors from "cors"; // hacer npm i cors
 
 
