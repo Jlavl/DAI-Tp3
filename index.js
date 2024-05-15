@@ -5,6 +5,7 @@ import {sumar, restar, multiplicar, dividir} from "./src/modules/matematica.js"
 import express from "express"; // hacer npm i express 
 import cors from "cors"; // hacer npm i cors
 
+// NO HACER OMDB, TERMINAR ALUMNO Y ENTREGAR
 
 const app = express();
 const port = 3000; // El puerto 3000 (http://localhost:3000)
@@ -87,6 +88,12 @@ app.post('/alumnos', (req,res) => {
     alumnosArray.push(new Alumno(req.body))
     res.status(201).send;
 })
+app.delete('/alumnos', (req,res) => {
+/*if (){
+
+}*/
+})
+
 //
 // Inicio el Server y lo pongo a escuchar.
 //
