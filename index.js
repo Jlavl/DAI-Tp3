@@ -85,8 +85,9 @@ app.get('/alumnos/:dni', (req,res) => { // Funciona con los tres
     res.status(200).send(result);
 })
 app.post('/alumnos', (req,res) => {
-    alumnosArray.push(new Alumno(req.body))
-    res.status(201).send;
+    console.log('el cuerpo es ', req.body)
+    res.json(req.body)
+//    res.status(201).send;
 })
 app.delete('/alumnos', (req,res) => {
 /*if (){
