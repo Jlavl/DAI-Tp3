@@ -87,12 +87,17 @@ app.get('/alumnos/:dni', (req,res) => { // Funciona con los tres
 app.post('/alumnos', (req,res) => {
     console.log('el cuerpo es ', req.body)
     res.json(req.body)
-//    res.status(201).send;
+    alumnosArray.push(req.body)
+    res.status(201).send('Se ha ingresado un nuevo usuario.');
 })
 app.delete('/alumnos', (req,res) => {
-/*if (){
-
-}*/
+    const result = alumnosArray.findIndex(alumnosArray => alumnosArray.DNI == req.params.dni)
+    if (result != null){ 
+        alumnosArray.splice(result,1);
+        res.status(200).send
+    } else{
+        res.status(404).send
+    }
 })
 
 //
